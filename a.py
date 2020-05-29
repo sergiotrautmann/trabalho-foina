@@ -2,20 +2,7 @@
 # João Pedro Almeida de Oliveira
 from graphics import *
 
-zbufer = []
-def matriz():
-    b = []
-    zbufer = []
-    a = 0
 
-    for l in range(800):
-        a +=1
-        b.append(a)
-        for i in range(10):
-            for i in range(8):
-                zbufer.append(b)
-    print(b)
-    print(zbufer)
 
 
 def ponto(x,y,cor,tam):
@@ -202,7 +189,9 @@ def texto( x, y, palavra, cor, tamanho, estilo):
     # ==escreve o texto em “palavra” na coordenada (x,y) da tela
     # === obs. Todos os textos estarão na horizontal
     # === use tamanha=10 e estilo= ‘bold’
-    t = Text(Point(x, y), palavra)
+    num1 = 400 + x
+    num2 = -y + 400
+    t = Text(Point(num1, num2), palavra)
 
     t.setOutline(cor)
     t.setSize(tamanho)
@@ -210,14 +199,21 @@ def texto( x, y, palavra, cor, tamanho, estilo):
     t.draw(win)
     return
 
-def Projetar(x,y,z,f, F,cor, tam):
+def Projetar(x,y,z,f, F):
     # == calcula a (x ́,y ́) da tela relativa ao ponto (x,y,z) do avião
     #no espaço 3D com o observador à distância F da origem do sistema
     #de coordenadas e o plano projetivo à distância f do observador
     X = x * f/(F-z)
     Y = y * f/(F-z)
-    ponto(X, Y, cor, tam)
+#   print(X,Y)
+#   ponto(X,Y,'red', 4)
     return
+
+def direcao(x,y):
+    m = y/x
+    print(m)
+    return m
+
 
 def Tela_Fundo(win):
     win.close()
@@ -240,14 +236,11 @@ def Tela_Fundo(win):
     reta(255, 255, 270, 270, 'gray', 2)
     reta(255, -255, 270, -270, 'gray', 2)
     return
-def clear(win):
-    texto.undraw(win)
-    win.update()
-    return
-matriz()
+
 
 win = GraphWin("Tela Radar", 800, 800, autoflush=False)
 win.setBackground("black")
+ponto(519, -300,'red',4)
 pontilhada(360, 0, -360, 0, "gray", 2)
 pontilhada(0, 360, 0, -360, "gray", 2)
 circulo(0, 0, 90, "gray", 1)
@@ -287,9 +280,39 @@ reta(100,347,105,363,'gray',2)
 reta(-100,347,-105,363,'gray',2)
 reta(100,-347,105,-363,'gray',2)
 reta(-100,-347,-105,-363,'gray',2)
-texto(665, 300, "90o", 'red', 10, 'bold')
-Projetar(100,200,300,10,500,3,'red')
 
-print(zbufer[0][0])
+texto(340, 0, "90o", 'gray', 10, 'bold')
+texto(0, 340, "0o", 'gray', 10, 'bold')
+texto(-340, 0, "270o", 'gray', 10, 'bold')
+texto(0, -340, "180o", 'gray', 10, 'bold')
 
+texto(-290,-180, "240o", 'gray', 10, 'bold')
+texto(-290,180, "300o", 'gray', 10, 'bold')
+texto(290,-180, "120o", 'gray', 10, 'bold')
+texto(290,180, "60o", 'gray', 10, 'bold')
+
+texto(330,90, "75o", 'gray', 10, 'bold')
+texto(-330,90, "285o", 'gray', 10, 'bold')
+texto(330,-90, "105o", 'gray', 10, 'bold')
+texto(-330,-90, "255o", 'gray', 10, 'bold')
+
+texto(170,300, "30o", 'gray', 10, 'bold')
+texto(-170,300, "330o", 'gray', 10, 'bold')
+texto(170,-300, "150o", 'gray', 10, 'bold')
+texto(-170,-300, "210o", 'gray', 10, 'bold')
+
+texto(100,327, "15o", 'gray', 10, 'bold')
+texto(-100,327, "345o", 'gray', 10, 'bold')
+texto(100,-327, "165o", 'gray', 10, 'bold')
+texto(-100,-327, "195o", 'gray', 10, 'bold')
+
+
+texto(240, 240, "45o", 'gray', 10, 'bold')
+texto(-240, 240, "315o", 'gray', 10, 'bold')
+texto(240, -240, "135o", 'gray', 10, 'bold')
+texto(-240, -240, "225o", 'gray', 10, 'bold')
+
+
+Projetar(-12990,7500,7500,100,15000)
+direcao(-12990,7500)
 win.getMouse()
