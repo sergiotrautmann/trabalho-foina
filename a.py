@@ -2,6 +2,22 @@
 # João Pedro Almeida de Oliveira
 from graphics import *
 
+zbufer = []
+def matriz():
+    b = []
+    zbufer = []
+    a = 0
+
+    for l in range(800):
+        a +=1
+        b.append(a)
+        for i in range(10):
+            for i in range(8):
+                zbufer.append(b)
+    print(b)
+    print(zbufer)
+
+
 def ponto(x,y,cor,tam):
 
     num1 = 400 + x
@@ -203,25 +219,53 @@ def Projetar(x,y,z,f, F,cor, tam):
     ponto(X, Y, cor, tam)
     return
 
-win = GraphWin("Tela Radar",800,800)
-win.setBackground("black")
+def Tela_Fundo(win):
+    win.close()
+    win = GraphWin("Tela Radar", 800, 800)
+    win.setBackground("black")
+    pontilhada(360, 0, -360, 0, "gray", 2)
+    pontilhada(0, 360, 0, -360, "gray", 2)
+    circulo(0, 0, 90, "gray", 1)
+    circulo(0, 0, 180, "gray", 1)
+    circulo(0, 0, 270, "gray", 1)
+    circulo(0, 0, 360, "gray", 1)
+    tracejada(-260, -260, 260, 260, "gray", 1)
+    tracejada(260, -260, -260, 260, "gray", 1)
+    reta(360, 0, 380, 0, "gray", 2)
+    reta(-360, 0, -380, 0, "gray", 2)
+    reta(0, 360, 0, 380, 'gray', 2)
+    reta(0, -360, 0, -380, 'gray', 2)
+    reta(-255, -255, -270, -270, 'gray', 2)
+    reta(-255, 255, -270, 270, 'gray', 2)
+    reta(255, 255, 270, 270, 'gray', 2)
+    reta(255, -255, 270, -270, 'gray', 2)
+    return
+def clear(win):
+    texto.undraw(win)
+    win.update()
+    return
+matriz()
 
+win = GraphWin("Tela Radar", 800, 800, autoflush=False)
+win.setBackground("black")
 pontilhada(360, 0, -360, 0, "gray", 2)
 pontilhada(0, 360, 0, -360, "gray", 2)
-circulo(0,0,90,"gray",1)
-circulo(0,0,180,"gray",1)
-circulo(0,0,270,"gray",1)
-circulo(0,0,360,"gray",1)
+circulo(0, 0, 90, "gray", 1)
+circulo(0, 0, 180, "gray", 1)
+circulo(0, 0, 270, "gray", 1)
+circulo(0, 0, 360, "gray", 1)
 tracejada(-260, -260, 260, 260, "gray", 1)
 tracejada(260, -260, -260, 260, "gray", 1)
-reta(360,0,380,0,"gray",2)
-reta(-360,0,-380,0,"gray",2)
-reta(0,360,0,380,'gray',2)
-reta(0,-360,0,-380,'gray',2)
-reta(-255,-255,-270,-270,'gray',2)
-reta(-255,255,-270,270,'gray',2)
-reta(255,255,270,270,'gray',2)
-reta(255,-255,270,-270,'gray',2)
+reta(360, 0, 380, 0, "gray", 2)
+reta(-360, 0, -380, 0, "gray", 2)
+reta(0, 360, 0, 380, 'gray', 2)
+reta(0, -360, 0, -380, 'gray', 2)
+reta(-255, -255, -270, -270, 'gray', 2)
+reta(-255, 255, -270, 270, 'gray', 2)
+reta(255, 255, 270, 270, 'gray', 2)
+reta(255, -255, 270, -270, 'gray', 2)
+
+
 
 
 reta(-310,-180,-330,-191,'gray',2)
@@ -245,4 +289,7 @@ reta(100,-347,105,-363,'gray',2)
 reta(-100,-347,-105,-363,'gray',2)
 texto(665, 300, "90o", 'red', 10, 'bold')
 Projetar(100,200,300,10,500,3,'red')
+
+print(zbufer[0][0])
+
 win.getMouse()
